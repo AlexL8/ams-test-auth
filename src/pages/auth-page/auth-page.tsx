@@ -1,6 +1,8 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
+// import { Navigate } from 'react-router-dom';
+
 
 const AuthPage: React.FC = () => {
   const onFinish = (values: any) => {

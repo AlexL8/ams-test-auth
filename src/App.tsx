@@ -6,18 +6,38 @@ import PrivPage from './pages/priv-page/priv-page';
 
 
 
+
 function App() {
   return (
-    <div className={styles.app}>
-      <div className={styles.container}>
-        <Routes>
-          <Route exact path="/" element={AuthPage}/>
-          <Route exact path="/private" element={PrivPage}/>
-        </Routes>
-        <AuthPage />
-      </div>
-    </div>
+    <Routes>
+      {ROUTES.map((route) => {
+        route.isPrivate ? (
+          <div/>
+        ) : (<Route path={route.path} element={route.component}/>)   
+        })}
+    </Routes>
   );
 }
 
 export default App;
+
+interface Page {
+  path: string;
+  component: React.ReactNode;
+  isPrivate: boolean;
+}
+type Pages = Page[];
+
+const ROUTES:Pages = [
+  {
+    path: '/login',
+    component: <AuthPage/>,
+    isPrivate: false
+  },
+  {
+    path: '/profile',
+    component: <PrivPage/>,
+    isPrivate: false
+  }
+];
+
