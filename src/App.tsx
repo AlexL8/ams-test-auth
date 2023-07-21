@@ -9,13 +9,16 @@ import PrivPage from './pages/priv-page/priv-page';
 
 function App() {
   return (
-    <Routes>
+    <>
       {ROUTES.map((route) => {
-        route.isPrivate ? (
-          <div/>
-        ) : (<Route path={route.path} element={route.component}/>)   
-        })}
-    </Routes>
+        const page = !route.isPrivate ? <Route path={route.path} element={route.component}  /> : <div/>
+        return (
+            <Routes>
+              {page}
+            </Routes>
+        )
+      })}
+    </>
   );
 }
 
@@ -26,6 +29,7 @@ interface Page {
   component: React.ReactNode;
   isPrivate: boolean;
 }
+
 type Pages = Page[];
 
 const ROUTES:Pages = [
