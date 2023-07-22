@@ -1,47 +1,70 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import styles from './app.module.css';
 import AuthPage from './pages/auth-page/auth-page';
 import PrivPage from './pages/priv-page/priv-page';
-
-
-
+import {PrivateRoute} from "./components/PrivateRoute";
 
 function App() {
   return (
-    <>
-      {ROUTES.map((route) => {
-        const page = !route.isPrivate ? <Route path={route.path} element={route.component}  /> : <div/>
-        return (
-            <Routes>
-              {page}
-            </Routes>
-        )
-      })}
-    </>
+      <Routes>
+        {PUBLIC_PAGES.map(({ path, component: Component }, index) => {
+          return (
+              <Route
+                  key={index}
+                  path={path}
+                  element={Component}
+              />
+          );
+        })}
+        {PRIVATE_PAGES.map(({ path, component: Component }, index) => {
+          return (
+              <Route
+                  key={index}
+                  path={path}
+                  element={
+                    <PrivateRoute>
+                      {Component}
+                    </PrivateRoute>
+                  }
+              />
+          );
+        })}
+      </Routes>
   );
 }
 
 export default App;
 
+export enum PAGE_PATH {
+  LOGIN = '/login',
+  PROFILE = '/profile',
+}
+
 interface Page {
-  path: string;
+  path: PAGE_PATH;
   component: React.ReactNode;
   isPrivate: boolean;
 }
 
 type Pages = Page[];
 
-const ROUTES:Pages = [
+export const ROUTES: Pages = [
   {
-    path: '/login',
+    path: PAGE_PATH.LOGIN,
     component: <AuthPage/>,
     isPrivate: false
   },
   {
-    path: '/profile',
+    path: PAGE_PATH.PROFILE,
     component: <PrivPage/>,
-    isPrivate: false
-  }
+    isPrivate: true
+  },
 ];
 
+export const PUBLIC_PAGES = ROUTES.filter(
+    (page) => !page.isPrivate
+);
+
+export const PRIVATE_PAGES = ROUTES.filter(
+    (page) => page.isPrivate
+);

@@ -1,10 +1,13 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Checkbox, Form, Input } from 'antd';
-// import { Navigate } from 'react-router-dom';
+import { useAppDispatch } from '../../hooks';
+import { setUserName } from '../../store/slices/userSlice';
 
 
 const AuthPage: React.FC = () => {
+const dispatch = useAppDispatch();
+
   const onFinish = (values: any) => {
     console.log('Received values of form: ', values);
   };
@@ -20,7 +23,8 @@ const AuthPage: React.FC = () => {
         name="username"
         rules={[{ required: true, message: 'Please input your Username!' }]}
       >
-        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+        <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username"
+         onChange={(e) => dispatch(setUserName(e.target.value))}/>
       </Form.Item>
       <Form.Item
         name="password"
