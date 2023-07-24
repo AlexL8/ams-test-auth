@@ -4,6 +4,7 @@ import AuthPage from './pages/auth-page/auth-page';
 import PrivPage from './pages/priv-page/priv-page';
 import {PrivateRoute} from "./components/PrivateRoute";
 
+
 function App() {
   return (
       <Routes>

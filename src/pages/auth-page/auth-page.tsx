@@ -12,7 +12,7 @@ const dispatch = useAppDispatch();
 const navigate = useNavigate()
 
 const onFinish = (values: LoginValues) => {
-  console.log('values', values)
+  // console.log('values', values)
   dispatch(
       thunkLogin({
         values,
