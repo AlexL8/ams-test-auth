@@ -2,11 +2,11 @@ import React from 'react';
 import { Button, Descriptions, Image, Space } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import styles from './styles.module.css';
-import { logoutThunk } from '../../store/slices/thunk/logoutThunk';
+import { logoutThunk } from '../../store/thunks/userThunk';
 import { useNavigate } from 'react-router-dom';
 
 
-const PrivPage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const state = useAppSelector(state => state.user.user)
@@ -23,7 +23,7 @@ const PrivPage: React.FC = () => {
   return (
   <div className={styles.container}>
     <Image
-      width={200}
+      width={WIDTH_OF_IMAGE}
       src={state.image}
       />
     <Descriptions layout='vertical' title={welcomePhrase}>
@@ -41,4 +41,6 @@ const PrivPage: React.FC = () => {
   )
 };
 
-export default PrivPage;
+export default ProfilePage;
+
+const WIDTH_OF_IMAGE = 200;

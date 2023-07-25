@@ -1,3 +1,5 @@
+import { NavigateFunction } from "react-router-dom"
+
 export interface UserResponse {
     id: number,
     username: string,
@@ -7,4 +9,8 @@ export interface UserResponse {
     gender: string,
     image: string,
     token: string
+}
+
+export interface defaultThunkPayload {
+    navigate: NavigateFunction;
 }

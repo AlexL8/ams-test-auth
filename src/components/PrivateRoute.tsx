@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import {PAGE_PATH} from "../App";
+import { PAGE_PATH } from '../routes/interfaces';
 
 interface Props {
   children: React.ReactNode

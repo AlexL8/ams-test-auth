@@ -1,17 +1,15 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { NavigateFunction } from "react-router-dom";
-import { axios } from "../../../libs/axios";
-import { UserResponse } from "./interfaces";
-import { LoginValues } from "../../../pages/auth-page/interface";
-import { setLoading, setUser } from "../userSlice";
+import { axios } from "../../libs/axios";
+import { UserResponse, defaultThunkPayload } from "./interfaces";
+import { LoginValues } from "../../pages/AuthPage/interface";
+import { setLoading, setUser } from "../slices/userSlice";
 
 
-interface Payload {
+interface LoginPayload extends defaultThunkPayload {
     values: LoginValues;
-    navigate: NavigateFunction;
 }
 
-export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: Payload, thunkAPI) => {
+export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: LoginPayload, thunkAPI) => {
     try {
         thunkAPI.dispatch(setLoading(true))
         const data = {
@@ -45,4 +43,10 @@ export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: Payloa
     } finally {
         thunkAPI.dispatch(setLoading(false))
     }
+})
+
+
+export const logoutThunk = createAsyncThunk('THUNK_LOGOUT', async (payload: defaultThunkPayload, thunkAPI) => {
+	localStorage.clear()
+	payload.navigate('/login')
 })

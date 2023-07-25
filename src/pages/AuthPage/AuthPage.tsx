@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LoginValues } from './interface';
 import { useNavigate } from 'react-router-dom';
-import { thunkLogin } from '../../store/slices/thunk/userThunk'
+import { thunkLogin } from '../../store/thunks/userThunk'
 
 
 const AuthPage: React.FC = () => {
