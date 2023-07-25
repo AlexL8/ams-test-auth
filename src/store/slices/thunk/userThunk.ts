@@ -1,9 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axios } from '../../../libs/axios';
+import { NavigateFunction } from "react-router-dom";
+import axios from "axios";
 import { UserResponse } from "./interfaces";
 import { LoginValues } from "../../../pages/auth-page/interface";
-import { NavigateFunction } from "react-router-dom";
 import { setUser } from "../userSlice";
+
 
 interface Payload {
     values: LoginValues;
@@ -36,6 +37,8 @@ export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: Payloa
         )
         localStorage.setItem('token', loginResponse.data.token)
         payload.navigate('/profile')
+        console.log(payload);
+        
     } catch (err) {
         console.warn(err)
     }

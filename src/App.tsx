@@ -3,10 +3,12 @@ import { Route, Routes } from 'react-router-dom';
 import AuthPage from './pages/auth-page/auth-page';
 import PrivPage from './pages/priv-page/priv-page';
 import {PrivateRoute} from "./components/PrivateRoute";
+import styles from './app.module.css';
 
 
 function App() {
   return (
+    <div className={styles.container}>
       <Routes>
         {PUBLIC_PAGES.map(({ path, component: Component }, index) => {
           return (
@@ -31,6 +33,7 @@ function App() {
           );
         })}
       </Routes>
+    </div>
   );
 }
 

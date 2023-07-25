@@ -3,8 +3,8 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
 import { useAppDispatch } from '../../hooks';
 import { LoginValues } from './interface';
-import { thunkLogin } from '../../store/slices/thunk/userThunk';
 import { useNavigate } from 'react-router-dom';
+import { thunkLogin } from '../../store/slices/thunk/userThunk'
 
 
 const AuthPage: React.FC = () => {

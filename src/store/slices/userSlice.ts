@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-// import { thunkLogin } from "./thunk/userThunk";
 
-type User = {
+interface User {
 	id: number;
 	username: string;
 	email: string;
@@ -28,17 +27,9 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser(state, action: PayloadAction<User>){
-			state = action.payload
-			console.log('state',state);
+			return state = action.payload
 		}
 	},
-	// extraReducers: (builder) => {
-	// 	// Add reducers for additional action types here, and handle loading state as needed
-	// 	builder.addCase(thunkLogin.fulfilled, (state, action) => {
-	// 		console.log(state);
-			
-	// 	})
-	//   },
 })
 
 export const { setUser } = userSlice.actions;
