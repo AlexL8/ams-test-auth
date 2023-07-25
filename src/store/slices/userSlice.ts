@@ -10,16 +10,22 @@ interface User {
 	image: string;
 	token: string;
 }
-
-const initialState: User = {
-		id: 0,
-		username: '',
-		email: '',
-		firstName: '',
-		lastName: '',
-		gender: '',
-		image: '',
-		token: '',
+interface InitialState {
+	user: User;
+	isLoading: boolean;
+}
+const initialState: InitialState = {
+		user: {
+			id: 0,
+			username: '',
+			email: '',
+			firstName: '',
+			lastName: '',
+			gender: '',
+			image: '',
+			token: '',
+		},
+		isLoading: false
 	}
 
 const userSlice = createSlice({
@@ -27,10 +33,19 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUser(state, action: PayloadAction<User>){
-			return state = action.payload
+			return {
+				...state,
+				user: action.payload
+			}
+		},
+		setLoading(state, action: PayloadAction<boolean>) {
+			return {
+				...state,
+				isLoading: action.payload
+			}
 		}
 	},
 })
 
-export const { setUser } = userSlice.actions;
+export const { setUser, setLoading } = userSlice.actions;
 export default userSlice.reducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input } from 'antd';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LoginValues } from './interface';
 import { useNavigate } from 'react-router-dom';
 import { thunkLogin } from '../../store/slices/thunk/userThunk'
@@ -10,6 +10,7 @@ import { thunkLogin } from '../../store/slices/thunk/userThunk'
 const AuthPage: React.FC = () => {
 const dispatch = useAppDispatch();
 const navigate = useNavigate()
+const loader = useAppSelector(state => state.user)
 
 const onFinish = (values: LoginValues) => {
   // console.log('values', values)
@@ -45,7 +46,7 @@ const onFinish = (values: LoginValues) => {
         />
       </Form.Item>
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        <Button type="primary" htmlType="submit" className="login-form-button" loading={loader.isLoading}>
           Log in
         </Button>
       </Form.Item>

@@ -9,9 +9,10 @@ import { useNavigate } from 'react-router-dom';
 const PrivPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const state = useAppSelector(state => state.user)
+  const state = useAppSelector(state => state.user.user)
+  const welcomePhrase = `Welcome, dear ${state.firstName} ${state.lastName}!`;
 
-  const onFinish = () => {
+  const onLogout = () => {
     dispatch(
       logoutThunk({
         navigate
@@ -25,7 +26,7 @@ const PrivPage: React.FC = () => {
       width={200}
       src={state.image}
       />
-    <Descriptions layout='vertical' title="User Info">
+    <Descriptions layout='vertical' title={welcomePhrase}>
         <Descriptions.Item label="First name">{state.firstName}</Descriptions.Item>
         <Descriptions.Item label="Last name">{state.lastName}</Descriptions.Item>
         <Descriptions.Item label="User name">{state.username}</Descriptions.Item>
@@ -34,7 +35,7 @@ const PrivPage: React.FC = () => {
         <Descriptions.Item label="ID">{state.id}</Descriptions.Item>
     </Descriptions>
     <Space wrap>
-        <Button onClick={()=>onFinish()} type="primary">Exit</Button>
+        <Button onClick={() => onLogout()} type="primary">Exit</Button>
     </Space>
   </div>
   )

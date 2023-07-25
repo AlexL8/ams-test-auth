@@ -1,9 +1,9 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { NavigateFunction } from "react-router-dom";
-import axios from "axios";
+import { axios } from "../../../libs/axios";
 import { UserResponse } from "./interfaces";
 import { LoginValues } from "../../../pages/auth-page/interface";
-import { setUser } from "../userSlice";
+import { setLoading, setUser } from "../userSlice";
 
 
 interface Payload {
@@ -13,6 +13,7 @@ interface Payload {
 
 export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: Payload, thunkAPI) => {
     try {
+        thunkAPI.dispatch(setLoading(true))
         const data = {
             username: payload.values.username,
             password: payload.values.password,
@@ -41,5 +42,7 @@ export const thunkLogin = createAsyncThunk('THUNK_LOGIN', async (payload: Payloa
         
     } catch (err) {
         console.warn(err)
+    } finally {
+        thunkAPI.dispatch(setLoading(false))
     }
 })
