@@ -1,6 +1,6 @@
 import React from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Form, Input } from 'antd';
+import { Alert, Button, Form, Input, } from 'antd';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { LoginValues } from './interface';
 import { useNavigate } from 'react-router-dom';
@@ -23,6 +23,7 @@ const onFinish = (values: LoginValues) => {
 };
 
   return (
+    <>
     <Form
       name="normal_login"
       className="login-form"
@@ -51,6 +52,8 @@ const onFinish = (values: LoginValues) => {
         </Button>
       </Form.Item>
     </Form>
+    <Alert message="username: kminchelle; password: 0lelplR" type="info" showIcon />
+    </>
   );
 };
 
